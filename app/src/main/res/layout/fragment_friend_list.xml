@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:id="@+id/friend_list_fragment"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@drawable/main_menu_background">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/top_toolbar"
+            app:title="Friends"
+            app:titleTextAppearance="@style/ToolbarFont"
+            app:titleTextColor="#FBFBFB"
+
+            android:background="@drawable/top_toolbar_background"
+            android:theme="@style/ToolbarPopupMenu"
+            app:popupTheme="@style/ToolbarPopupMenuBackground"
+
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+        />
+
+        <LinearLayout
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/user_profile_background"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/search_icon"
+                android:layout_marginEnd="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_search_24"
+            />
+
+            <EditText
+                android:id="@+id/search_chat"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:hint="@string/search_hint_text"
+                android:background="#FBFBFB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:importantForAutofill="no"
+                android:inputType="none"/>
+
+        </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/friend_list_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignTop="@id/search_bar"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="53dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="75dp"
+        android:background="@drawable/user_profile_background">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chat_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"/>
+
+        <ImageView
+            android:id="@+id/new_chat_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/new_chat_friend_button_background"
+            android:padding="15dp"
+            android:src="@drawable/ic_baseline_person_add_24"
+        />
+
+        <TextView
+            android:id="@+id/empty_friend"
+            android:text="@string/no_friends_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+        />
+
+    </RelativeLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

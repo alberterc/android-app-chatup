@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/initial_menu_background"
+    tools:context=".getstarted.InitialSignUp">
+
+    <ImageView
+        android:id="@+id/back_button_top"
+        android:src="@drawable/back_symbol"
+        android:clickable="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/get_started_image"
+            android:layout_width="306dp"
+            android:layout_height="255dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/undraw_mobile_login_re_9ntv_1"/>
+
+        <TextView
+            android:id="@+id/initial_sign_up_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/get_started_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="313dp"
+            android:fontFamily="@font/ud_digikyokasho_n_b"
+            android:text="@string/make_an_account_title"
+            android:textColor="@color/black"
+            android:textSize="24sp"/>
+
+        <TextView
+            android:id="@+id/initial_sign_up_info"
+            android:layout_width="265dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/initial_sign_up_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="52dp"
+            android:fontFamily="@font/ud_digikyokasho_n_r"
+            android:text="@string/initial_sign_up_info_text"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="15sp"/>
+
+        <android.widget.Button
+            android:id="@+id/initial_sign_up_button"
+            android:layout_width="328dp"
+            android:layout_height="48dp"
+            android:layout_alignTop="@+id/initial_sign_up_info"
+            android:layout_marginTop="186dp"
+            android:background="@drawable/button_background"
+            android:fontFamily="@font/ud_digikyokasho_n_r"
+            android:text="@string/create_account_button"
+            android:textAllCaps="false"
+            android:textColor="#FBFBFB"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/already_have_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/initial_sign_up_button"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:clickable="true"
+            android:fontFamily="@font/ud_digikyokasho_n_r"
+            android:text="@string/already_have_an_account_text"
+            android:textColor="#7391E4"
+            android:textSize="14sp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
