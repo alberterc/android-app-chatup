@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/initial_menu_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".signinup.VerifyEmail">
+
+    <RelativeLayout
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/verify_email_text"
+            android:text="@string/verify_email_text"
+            android:fontFamily="@font/ud_digikyokasho_n_b"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/verify_email_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/verify_email_text"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:fontFamily="@font/ud_digikyokasho_n_r"
+            android:paddingStart="35dp"
+            android:paddingEnd="35dp"
+            android:text="@string/verify_email_info_one"
+            android:textAlignment="center"
+            android:textColor="@color/black"/>
+
+        <android.widget.Button
+            android:id="@+id/continue_button"
+            android:layout_width="328dp"
+            android:layout_height="48dp"
+            android:layout_alignTop="@id/verify_email_info"
+            android:layout_marginTop="100dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_background"
+            android:fontFamily="@font/ud_digikyokasho_n_r"
+            android:text="@string/continue_text_button"
+            android:textAllCaps="false"
+            android:textColor="#FBFBFB"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/verify_email_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/continue_button"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:fontFamily="@font/ud_digikyokasho_n_r"
+            android:paddingStart="35dp"
+            android:paddingEnd="35dp"
+            android:text="@string/verify_email_info_two"
+            android:textAlignment="center"
+            android:textColor="#7391E4"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -34,4 +34,9 @@
     <string name="search_hint_text">Search</string>
     <string name="no_chats_text">No chats</string>
     <string name="no_friends_text">No friends</string>
+    <string name="verify_email_text">VERIFY EMAIL</string>
+    <string name="verify_email_info_one">You need to verify your email before using our app. Please check your email\'s
+        inbox or spam folder.
+    </string>
+    <string name="verify_email_info_two">Send another verification?</string>
 </resources>

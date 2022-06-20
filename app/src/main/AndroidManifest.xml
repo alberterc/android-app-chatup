@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FirebaseChatApp">
         <activity
+            android:name=".signinup.VerifyEmail"
+            android:exported="true"/>
+        <activity
             android:name=".UserProfile"
             android:exported="true"/>
         <activity
@@ -24,12 +27,6 @@
             android:exported="true"/>
         <activity
             android:name=".signinup.SignUp"
-            android:exported="true"/>
-        <activity
-            android:name=".signinup.SignIn"
-            android:exported="true"/>
-        <activity
-            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -37,6 +34,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name=".signinup.SignIn"
+            android:exported="true"/>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>
