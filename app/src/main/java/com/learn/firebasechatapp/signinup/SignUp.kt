@@ -56,7 +56,7 @@ class SignUp : AppCompatActivity() {
         }
 
         // check confirm password
-        confirmPasswordInput.setOnFocusChangeListener {
+        confirmPasswordInput.setOnFocusChangeListener   {
             _, hasFocus ->
                 if (!hasFocus) {
                     verifyConfirmPassword()
