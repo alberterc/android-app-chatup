@@ -212,7 +212,7 @@
                 </RelativeLayout>
 
                 <TextView
-                    android:id="@+id/swipe_refresh_info"
+                    android:id="@+id/empty_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/user_account_gender"
@@ -220,7 +220,7 @@
                     android:layout_marginTop="200dp"
                     android:fontFamily="@font/almarai_regular"
                     android:paddingBottom="20dp"
-                    android:text="@string/swipe_down_to_refresh_user_info_text"
+                    android:visibility="invisible"
                     android:textColor="#AABBC6"
                     android:textSize="14sp"/>
 

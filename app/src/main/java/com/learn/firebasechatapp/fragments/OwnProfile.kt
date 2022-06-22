@@ -1,13 +1,15 @@
 package com.learn.firebasechatapp.fragments
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.text.InputType
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
@@ -18,9 +20,8 @@ import com.learn.firebasechatapp.helper.CircleCropImageBitmap
 import com.learn.firebasechatapp.helper.DrawableToBitmap
 import com.learn.firebasechatapp.helper.FirebaseUtil
 import com.learn.firebasechatapp.signinup.SignUp
-import com.learn.firebasechatapp.userinfo.ChangeUserBio
-import com.learn.firebasechatapp.userinfo.ChangeUserGender
-import com.learn.firebasechatapp.userinfo.ChangeUserPhoneNumber
+import com.learn.firebasechatapp.userinfo.*
+
 
 class OwnProfile : Fragment() {
 
@@ -47,7 +48,7 @@ class OwnProfile : Fragment() {
         initUserInfoFirebase(view)
 
         // refresh fragment every 5 seconds
-        val refreshHandler = Handler()
+        @Suppress("DEPRECATION") val refreshHandler = Handler()
         val runnable: Runnable = object : Runnable {
             override fun run() {
                 initUserInfoFirebase(view)
@@ -135,9 +136,20 @@ class OwnProfile : Fragment() {
                     Toast.makeText(context, "pic changed", Toast.LENGTH_SHORT)
                         .show()
                 }
-                R.id.action_reset_password -> {
-                    Toast.makeText(context, "reset passw", Toast.LENGTH_SHORT)
-                        .show()
+                R.id.action_change_username -> {
+                    // go to ChangeUserUsername activity
+                    activity!!.startActivity(Intent(activity, ChangeUserUsername::class.java))
+                }
+                R.id.action_change_password -> {
+                    // send a reset password to user's email
+                    val user = firebaseAuth.currentUser
+                    firebaseAuth.sendPasswordResetEmail(user!!.email!!)
+                        .addOnCompleteListener {task ->
+                            if (task.isSuccessful) {
+                                Toast.makeText(context, "Password reset email sent", Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+                        }
                 }
                 R.id.action_signout -> {
                     firebaseAuth.signOut()
@@ -147,6 +159,10 @@ class OwnProfile : Fragment() {
                     // go to SignUp activity
                     activity!!.startActivity(Intent(activity, SignUp::class.java))
                     activity!!.finish()
+                }
+                R.id.action_delete_account -> {
+                    // go to DeleteUserAccount activity
+                    activity!!.startActivity(Intent(activity, DeleteUserAccount::class.java))
                 }
             }
             true

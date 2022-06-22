@@ -45,4 +45,5 @@
     <string name="female_gender_text">Female</string>
     <string name="rather_not_say_gender_text">Rather not say</string>
     <string name="save_button">Save</string>
+    <string name="forgot_password_text">Forgot password</string>
 </resources>

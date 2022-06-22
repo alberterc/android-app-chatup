@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FirebaseChatApp">
         <activity
+            android:name=".userinfo.DeleteUserAccount"
+            android:exported="true"/>
+        <activity
+            android:name=".userinfo.ChangeUserUsername"
+            android:exported="true"/>
+        <activity
+            android:name=".userinfo.ChangeUserPassword"
+            android:exported="true"/>
+        <activity
             android:name=".userinfo.ChangeUserPhoneNumber"
             android:exported="true"/>
         <activity

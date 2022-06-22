@@ -28,7 +28,7 @@ class GetStarted : AppCompatActivity() {
         val getStartedButton:Button = findViewById(R.id.get_started_button)
         getStartedButton.setOnClickListener {
             // go to InitialSignUp activity
-            startActivity(Intent(applicationContext, InitialSignUp::class.java))
+            startActivity(Intent(this, InitialSignUp::class.java))
             finish()
         }
     }

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/main_menu_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".userinfo.ChangeUserUsername">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/top_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/top_toolbar_background"
+
+        android:theme="@style/ToolbarPopupMenu"
+        app:title="Change Username"
+
+        app:titleTextAppearance="@style/ToolbarFont"
+        app:titleTextColor="#FBFBFB"
+    />
+
+    <ImageView
+        android:id="@+id/back_button_top"
+        android:src="@drawable/back_symbol"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginTop="70dp"
+        android:layout_marginStart="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_centerInParent="true"
+        android:layout_margin="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/change_username_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ud_digikyokasho_n_b"
+            android:text="Username"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+        />
+
+        <EditText
+            android:id="@+id/change_username_input"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_alignTop="@id/change_username_title"
+            android:layout_marginTop="30dp"
+            android:autofillHints="username"
+            android:background="@drawable/user_text_input_background"
+            android:fontFamily="@font/ud_digikyokasho_n_r"
+            android:inputType="textPersonName"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+        />
+
+        <android.widget.Button
+            android:id="@+id/change_username_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/change_username_input"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/button_background"
+            android:text="@string/save_button"
+            android:textAllCaps="false"
+            android:textColor="#FBFBFB"
+        />
+
+    </RelativeLayout>
+
+</RelativeLayout>

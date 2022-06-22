@@ -38,7 +38,7 @@ class InitialSignUp : AppCompatActivity() {
             changeActivityPref()
 
             // go to SignUp activity
-            startActivity(Intent(applicationContext, SignUp::class.java))
+            startActivity(Intent(this, SignUp::class.java))
             finish()
         }
 
@@ -55,7 +55,7 @@ class InitialSignUp : AppCompatActivity() {
             changeActivityPref()
 
             // go to SignUp activity
-            startActivity(Intent(applicationContext, SignUp::class.java))
+            startActivity(Intent(this, SignUp::class.java))
             finish()
         }
     }
@@ -76,7 +76,7 @@ class InitialSignUp : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        startActivity(Intent(applicationContext, GetStarted::class.java))
+        startActivity(Intent(this, GetStarted::class.java))
         finish()
     }
 }
