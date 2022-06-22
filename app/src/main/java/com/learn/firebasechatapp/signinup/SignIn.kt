@@ -2,6 +2,7 @@ package com.learn.firebasechatapp.signinup
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
@@ -26,13 +28,6 @@ class SignIn : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
-        // don't have an account text onclick function
-        val createNewAccount: TextView = findViewById(R.id.create_new_account)
-        createNewAccount.setOnClickListener{
-            startActivity(Intent(applicationContext, SignUp::class.java))
-            finish()
-        }
-
         val emailInput: EditText = findViewById(R.id.email_input)
         val passwordInput: EditText = findViewById(R.id.password_input)
         val signInWithEmailPasswordButton: Button = findViewById(R.id.continue_button)
@@ -41,6 +36,40 @@ class SignIn : AppCompatActivity() {
         firebaseAuth = Firebase.auth
         // initialize Firebase database
         firebaseDatabase = Firebase.database(FirebaseUtil.firebaseDatabaseURL)
+
+        // don't have an account text onclick function
+        val createNewAccount: TextView = findViewById(R.id.create_new_account)
+        createNewAccount.setOnClickListener {
+            startActivity(Intent(applicationContext, SignUp::class.java))
+            finish()
+        }
+
+        // forgot password text onclick function
+        val forgotPassword: TextView = findViewById(R.id.forgot_password)
+        forgotPassword.setOnClickListener {
+            if (emailInput.text.toString() != "") {
+                firebaseAuth.sendPasswordResetEmail(emailInput.text.toString())
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(this, "Password reset email sent", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                        else {
+                            try {
+                                val noUserFoundException: FirebaseAuthInvalidUserException = task.exception as FirebaseAuthInvalidUserException
+                                Toast.makeText(this, "Account not found.", Toast.LENGTH_SHORT)
+                                    .show()
+                            } catch (e: Exception) {
+                                Toast.makeText(
+                                    this,
+                                    "A network error has occurred",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                    }
+            }
+        }
 
         // user account sign in
         signInWithEmailPasswordButton.setOnClickListener {
@@ -110,6 +139,7 @@ class SignIn : AppCompatActivity() {
                 val isNewUser = task.result.signInMethods!!.isEmpty()
                 if (isNewUser) {
                     if (uid != null) {
+                        Log.e("DATABASE", "database created")
                         // set default user bio
                         firebaseDatabase.reference
                             .child("users").child(uid).child("bio")
@@ -125,6 +155,12 @@ class SignIn : AppCompatActivity() {
                             .child("users").child(uid).child("gender")
                             .setValue(userGender)
                     }
+                    else {
+                        Log.e("DATABASE", "new database not created")
+                    }
+                }
+                else {
+                    Log.e("DATABASE", "OLD USER")
                 }
             }
     }

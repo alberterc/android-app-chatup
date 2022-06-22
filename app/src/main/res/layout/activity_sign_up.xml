@@ -142,48 +142,11 @@
             android:textSize="13sp"
             android:visibility="invisible"/>
 
-        <TextView
-            android:id="@+id/or_sign_up_with"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/confirm_password_input"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="81dp"
-            android:fontFamily="@font/ud_digikyokasho_n_r"
-            android:text="@string/or_sign_up_with"
-            android:textColor="@color/black"/>
-
-        <LinearLayout
-            android:id="@+id/sign_choices"
-            android:layout_alignTop="@+id/or_sign_up_with"
-            android:layout_marginTop="48dp"
-            android:layout_centerHorizontal="true"
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <ImageView
-                android:id="@+id/gmail_login_button"
-                android:clickable="true"
-                android:src="@drawable/gmail_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <ImageView
-                android:id="@+id/facebook_login_button"
-                android:clickable="true"
-                android:src="@drawable/facebook_login"
-                android:layout_marginStart="44dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
         <android.widget.Button
             android:id="@+id/continue_button"
             android:layout_width="328dp"
             android:layout_height="48dp"
-            android:layout_alignTop="@id/sign_choices"
+            android:layout_alignTop="@id/confirm_password_input"
             android:layout_marginTop="83dp"
             android:background="@drawable/button_background"
             android:fontFamily="@font/ud_digikyokasho_n_r"
