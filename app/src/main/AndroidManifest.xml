@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FirebaseChatApp">
         <activity
+            android:name=".userinfo.ChangeUserPhoneNumber"
+            android:exported="true"/>
+        <activity
+            android:name=".userinfo.ChangeUserGender"
+            android:exported="true"/>
+        <activity
+            android:name=".userinfo.ChangeUserBio"
+            android:exported="true"/>
+        <activity
             android:name=".signinup.VerifyEmail"
             android:exported="true"/>
         <activity

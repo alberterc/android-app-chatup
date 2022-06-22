@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/main_menu_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".userinfo.ChangeUserGender">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/top_toolbar"
+        app:title="Change Gender"
+        app:titleTextAppearance="@style/ToolbarFont"
+        app:titleTextColor="#FBFBFB"
+
+        android:background="@drawable/top_toolbar_background"
+        android:theme="@style/ToolbarPopupMenu"
+
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+    />
+
+    <ImageView
+        android:id="@+id/back_button_top"
+        android:src="@drawable/back_symbol"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginTop="70dp"
+        android:layout_marginStart="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_centerInParent="true" android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp" android:layout_marginEnd="30dp" android:layout_marginBottom="30dp">
+
+        <TextView
+            android:id="@+id/change_gender_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ud_digikyokasho_n_b"
+            android:text="Gender"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+        />
+
+        <RadioGroup
+            android:id="@+id/change_gender_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/change_gender_title"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/user_text_input_background"
+            android:padding="10dp">
+
+            <RadioButton
+                android:id="@+id/gender_male_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ud_digikyokasho_n_r"
+                android:text="@string/male_gender_text"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+            />
+
+            <RadioButton
+                android:id="@+id/gender_female_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ud_digikyokasho_n_r"
+                android:text="@string/female_gender_text"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+            />
+
+            <RadioButton
+                android:id="@+id/gender_unknown_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ud_digikyokasho_n_r"
+                android:text="@string/rather_not_say_gender_text"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+            />
+
+        </RadioGroup>
+
+        <android.widget.Button
+            android:id="@+id/change_gender_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/change_gender_container"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="200dp"
+            android:background="@drawable/button_background"
+            android:text="@string/save_button"
+            android:textAllCaps="false"
+            android:textColor="#FBFBFB"
+        />
+
+    </RelativeLayout>
+
+</RelativeLayout>

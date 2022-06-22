@@ -22,7 +22,12 @@ class Friends : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // top toolbar
+        // initialize custom toolbar and popup menu
+        initTopToolbar(view)
+    }
+
+    private fun initTopToolbar(view: View) {
+        // create top toolbar
         val topToolbar: MaterialToolbar = view.findViewById(R.id.top_toolbar)
         topToolbar.inflateMenu(R.menu.friend_list_menu)
         topToolbar.setOnMenuItemClickListener{

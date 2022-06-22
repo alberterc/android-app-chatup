@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import com.google.android.material.appbar.MaterialToolbar
 
+// user profile code template
 class UserProfile : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

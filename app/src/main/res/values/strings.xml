@@ -39,4 +39,10 @@
         inbox or spam folder.
     </string>
     <string name="verify_email_info_two">Send another verification?</string>
+    <string name="bio_title">Bio</string>
+    <string name="swipe_down_to_refresh_user_info_text">Swipe down to refresh user info</string>
+    <string name="male_gender_text">Male</string>
+    <string name="female_gender_text">Female</string>
+    <string name="rather_not_say_gender_text">Rather not say</string>
+    <string name="save_button">Save</string>
 </resources>
