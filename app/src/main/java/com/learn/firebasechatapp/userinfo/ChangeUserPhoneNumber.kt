@@ -38,7 +38,7 @@ class ChangeUserPhoneNumber : AppCompatActivity() {
         firebaseDatabase.reference
             .child("users")
             .child(user!!.uid)
-            .child("gender")
+            .child("phone_number")
             .get()
             .addOnSuccessListener {
                 inputPhoneNumber.setText(it.value.toString())
