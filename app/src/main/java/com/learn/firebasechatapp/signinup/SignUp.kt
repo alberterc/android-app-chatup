@@ -1,7 +1,9 @@
 package com.learn.firebasechatapp.signinup
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -11,17 +13,28 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
 import com.learn.firebasechatapp.MainActivity
 import com.learn.firebasechatapp.R
+import com.learn.firebasechatapp.helper.FirebaseUtil
 
 
 class SignUp : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var firebaseDatabase: FirebaseDatabase
+    private lateinit var firebaseStorage: FirebaseStorage
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // initialize Firebase auth
         firebaseAuth = Firebase.auth
+        // initialize Firebase Realtime database
+        firebaseDatabase = Firebase.database(FirebaseUtil.firebaseDatabaseURL)
+        // initialize Firebase cloud storage
+        firebaseStorage = Firebase.storage
 
         // check if an account is already signed in
         // if yes, go to MainActivity activity
@@ -75,20 +88,24 @@ class SignUp : AppCompatActivity() {
 
     }
 
-    private fun createAccountFirebase(username:String, email: String, password: String) {
+    private fun createAccountFirebase(username: String, email: String, password: String) {
         val emailInput: EditText = findViewById(R.id.email_input)
         val passwordInput: EditText = findViewById(R.id.password_input)
+
 
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 // account creation and sign in success
                 if (task.isSuccessful) {
-                    // set user account display name
                     val user = firebaseAuth.currentUser
+                    // store user info
                     val profileUpdate = userProfileChangeRequest {
+                        // set user account display name
                         displayName = username
                     }
+                    // update user info
                     user!!.updateProfile(profileUpdate)
+                    writeDatabaseNewUser(user.uid, user.email)
 
                     // go to VerifyEmail activity
                     startActivity(Intent(applicationContext, VerifyEmail::class.java))
@@ -127,6 +144,42 @@ class SignUp : AppCompatActivity() {
                     }
                 }
             }
+    }
+
+    private fun writeDatabaseNewUser(uid: String?, email: String?) {
+        // default user info
+        val userBio = "Hello!"
+        val userPhoneNumber = "Unknown"
+        val userGender = "Rather not say"
+
+        if (uid != null) {
+            // set default user bio
+            firebaseDatabase.reference
+                .child("users").child(uid).child("bio")
+                .setValue(userBio)
+
+            // set default user phone number
+            firebaseDatabase.reference
+                .child("users").child(uid).child("phone_number")
+                .setValue(userPhoneNumber)
+
+            // set default user gender
+            firebaseDatabase.reference
+                .child("users").child(uid).child("gender")
+                .setValue(userGender)
+
+            // set default user profile picture
+            // get default picture from Firebase cloud storage
+            firebaseStorage.reference
+                .child("default_assets/profile_picture/user_icon.png")
+                .downloadUrl
+                .addOnSuccessListener {
+                    // set user profile picture in Firebase realtime database
+                    firebaseDatabase.reference
+                        .child("users").child(uid).child("profile_picture")
+                        .setValue(it.toString())
+                }
+        }
     }
 
     private fun verifyPassword(): Boolean {

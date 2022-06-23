@@ -127,49 +127,10 @@ class SignIn : AppCompatActivity() {
             }
     }
 
-    private fun writeDatabaseNewUser(uid: String?, email: String?) {
-        // default user info
-        val userBio = "Hello!"
-        val userPhoneNumber = "Unknown"
-        val userGender = "Rather not say"
-
-        // check if the account is new or not (using email)
-        firebaseAuth.fetchSignInMethodsForEmail(email!!)
-            .addOnCompleteListener { task ->
-                val isNewUser = task.result.signInMethods!!.isEmpty()
-                if (isNewUser) {
-                    if (uid != null) {
-                        Log.e("DATABASE", "database created")
-                        // set default user bio
-                        firebaseDatabase.reference
-                            .child("users").child(uid).child("bio")
-                            .setValue(userBio)
-
-                        // set default user phone number
-                        firebaseDatabase.reference
-                            .child("users").child(uid).child("phone_number")
-                            .setValue(userPhoneNumber)
-
-                        // set default user gender
-                        firebaseDatabase.reference
-                            .child("users").child(uid).child("gender")
-                            .setValue(userGender)
-                    }
-                    else {
-                        Log.e("DATABASE", "new database not created")
-                    }
-                }
-                else {
-                    Log.e("DATABASE", "OLD USER")
-                }
-            }
-    }
-
     private fun checkIfEmailVerified() {
         val user = firebaseAuth.currentUser
         // email is verified, go to MainActivity activity
         if (user!!.isEmailVerified) {
-            writeDatabaseNewUser(user.uid, user.email)
             startActivity(Intent(applicationContext, MainActivity::class.java))
             finish()
         }

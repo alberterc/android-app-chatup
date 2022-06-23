@@ -55,6 +55,14 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx'
     // firebase database
     implementation 'com.google.firebase:firebase-database-ktx'
+    // firebase cloud storage
+    implementation 'com.google.firebase:firebase-storage-ktx'
+
+    // circle image view
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    // picasso for image loading from url
+    implementation 'com.squareup.picasso:picasso:2.8'
 }
 
 apply plugin: 'com.google.gms.google-services'
