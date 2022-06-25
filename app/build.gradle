@@ -57,6 +57,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-database-ktx'
     // firebase cloud storage
     implementation 'com.google.firebase:firebase-storage-ktx'
+    // firebase ui
+    implementation 'com.firebaseui:firebase-ui:8.0.1'
 
     // circle image view
     implementation 'de.hdodenhof:circleimageview:3.1.0'
