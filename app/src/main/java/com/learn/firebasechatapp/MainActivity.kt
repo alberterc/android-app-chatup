@@ -12,11 +12,20 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.learn.firebasechatapp.signinup.SignIn
 import com.learn.firebasechatapp.signinup.SignUp
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val firebaseAuth: FirebaseAuth = Firebase.auth
+        if (firebaseAuth.currentUser == null) {
+            // if not signed up
+            // go to sign up activity
+            startActivity(Intent(applicationContext, SignUp::class.java))
+            finish()
+        }
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 

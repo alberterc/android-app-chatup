@@ -8,11 +8,15 @@ import android.widget.ImageView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.learn.firebasechatapp.R
+import com.learn.firebasechatapp.helper.FirebaseUtil
 
 class ChangeUserUsername : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var firebaseDatabase: FirebaseDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +25,8 @@ class ChangeUserUsername : AppCompatActivity() {
         // initialize firebase auth
         firebaseAuth = Firebase.auth
         val user = firebaseAuth.currentUser
+        // initialize firebase realtime database
+        firebaseDatabase = Firebase.database(FirebaseUtil.firebaseDatabaseURL)
 
         // back button onclick function
         val backButton: ImageView = findViewById(R.id.back_button_top)
@@ -37,6 +43,11 @@ class ChangeUserUsername : AppCompatActivity() {
                 displayName = usernameInput.text.toString()
             }
             user!!.updateProfile(profileUpdate)
+
+            // set username in Firebase realtime database
+            firebaseDatabase.reference
+                .child("users").child(user.uid).child("username")
+                .setValue(usernameInput.text.toString())
 
             // go back to OwnProfile fragment
             onBackPressed()

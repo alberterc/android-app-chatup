@@ -60,45 +60,46 @@
 
         </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/friend_list_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignTop="@id/search_bar"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="53dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="75dp"
-        android:background="@drawable/user_profile_background">
+        <RelativeLayout
+            android:id="@+id/friend_list_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignTop="@id/search_bar"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="53dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="75dp"
+            android:background="@drawable/user_profile_background">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/chat_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/friend_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"/>
 
-        <ImageView
-            android:id="@+id/new_chat_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/new_chat_friend_button_background"
-            android:padding="15dp"
-            android:src="@drawable/ic_baseline_person_add_24"
-        />
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/new_chat_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="#305AA6"
+                app:tint="#FBFBFB"
+                android:padding="15dp"
+                android:src="@drawable/ic_baseline_person_add_24"
+            />
 
-        <TextView
-            android:id="@+id/empty_friend"
-            android:text="@string/no_friends_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-        />
+            <TextView
+                android:id="@+id/empty_friend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/no_friends_text"
+            />
 
-    </RelativeLayout>
+        </RelativeLayout>
 
     </RelativeLayout>
 

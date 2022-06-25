@@ -56,7 +56,6 @@ class SignIn : AppCompatActivity() {
                         }
                         else {
                             try {
-                                val noUserFoundException: FirebaseAuthInvalidUserException = task.exception as FirebaseAuthInvalidUserException
                                 Toast.makeText(this, "Account not found.", Toast.LENGTH_SHORT)
                                     .show()
                             } catch (e: Exception) {

@@ -13,6 +13,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
 import com.learn.firebasechatapp.MainActivity
 import com.learn.firebasechatapp.R
 import com.learn.firebasechatapp.helper.FirebaseUtil
@@ -21,6 +23,7 @@ import com.learn.firebasechatapp.signinup.SignUp
 class DeleteUserAccount : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firebaseDatabase: FirebaseDatabase
+    private lateinit var firebaseStorage: FirebaseStorage
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +34,8 @@ class DeleteUserAccount : AppCompatActivity() {
         val user = firebaseAuth.currentUser
         // initialize Firebase database
         firebaseDatabase = Firebase.database(FirebaseUtil.firebaseDatabaseURL)
+        // initialize Firebase storage
+        firebaseStorage = Firebase.storage
 
         // back top button onclick function
         val backButton: ImageView = findViewById(R.id.back_button_top)
@@ -49,9 +54,14 @@ class DeleteUserAccount : AppCompatActivity() {
                         passwordInput.error = null
                         // remove account data from firebase database
                         firebaseDatabase.reference
-                            .child("users/")
+                            .child("users")
                             .child(user.uid)
                             .removeValue()
+                        // remove account data from firebase storage
+                        firebaseStorage.reference
+                            .child("users")
+                            .child(user.uid)
+                            .delete()
                         // remove account from firebase auth
                         user.delete()
                         firebaseAuth.signOut()

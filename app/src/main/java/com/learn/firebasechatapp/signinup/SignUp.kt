@@ -1,9 +1,7 @@
 package com.learn.firebasechatapp.signinup
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -105,7 +103,7 @@ class SignUp : AppCompatActivity() {
                     }
                     // update user info
                     user!!.updateProfile(profileUpdate)
-                    writeDatabaseNewUser(user.uid, user.email)
+                    writeDatabaseNewUser(user.uid, user.email, username)
 
                     // go to VerifyEmail activity
                     startActivity(Intent(applicationContext, VerifyEmail::class.java))
@@ -113,46 +111,61 @@ class SignUp : AppCompatActivity() {
                 }
                 // account creation and sign in failed
                 else {
-                    when ((task.exception as FirebaseAuthException?)!!.errorCode) {
-                        "ERROR_INVALID_EMAIL" -> {
-                            emailInput.error = "The email address is badly formatted."
-                            emailInput.requestFocus()
+                    try {
+                        when ((task.exception as FirebaseAuthException?)!!.errorCode) {
+                            "ERROR_INVALID_EMAIL" -> {
+                                emailInput.error = "The email address is badly formatted."
+                                emailInput.requestFocus()
+                            }
+                            "ERROR_EMAIL_ALREADY_IN_USE" -> {
+                                emailInput.error = "The email address is already in use by another account."
+                                emailInput.requestFocus()
+                            }
+                            "ERROR_WEAK_PASSWORD" -> {
+                                passwordInput.error = "Needs to have at least 6 characters."
+                                passwordInput.requestFocus()
+                            }
+                            "ERROR_WRONG_PASSWORD" -> {
+                                passwordInput.error = "The password is incorrect."
+                                passwordInput.requestFocus()
+                                passwordInput.setText("")
+                            }
+                            "ERROR_USER_DISABLED" -> Toast.makeText(
+                                applicationContext,
+                                "The user account has been disabled by an administrator.",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            "ERROR_USER_NOT_FOUND" -> Toast.makeText(
+                                applicationContext,
+                                "Account not found.",
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
-                        "ERROR_EMAIL_ALREADY_IN_USE" -> {
-                            emailInput.error = "The email address is already in use by another account."
-                            emailInput.requestFocus()
-                        }
-                        "ERROR_WEAK_PASSWORD" -> {
-                            passwordInput.error = "Needs to have at least 6 characters."
-                            passwordInput.requestFocus()
-                        }
-                        "ERROR_WRONG_PASSWORD" -> {
-                            passwordInput.error = "The password is incorrect."
-                            passwordInput.requestFocus()
-                            passwordInput.setText("")
-                        }
-                        "ERROR_USER_DISABLED" -> Toast.makeText(
-                            applicationContext,
-                            "The user account has been disabled by an administrator.",
-                            Toast.LENGTH_LONG
-                        ).show()
-                        "ERROR_USER_NOT_FOUND" -> Toast.makeText(
-                            applicationContext,
-                            "Account not found.",
-                            Toast.LENGTH_LONG
-                        ).show()
+                    } catch (e: Exception) {
+                        Toast.makeText(applicationContext, "Network error occurred", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
             }
     }
 
-    private fun writeDatabaseNewUser(uid: String?, email: String?) {
+    private fun writeDatabaseNewUser(uid: String?, email: String?, displayName: String?) {
         // default user info
         val userBio = "Hello!"
         val userPhoneNumber = "Unknown"
         val userGender = "Rather not say"
 
         if (uid != null) {
+            // set user email
+            firebaseDatabase.reference
+                .child("users").child(uid).child("email")
+                .setValue(email)
+
+            // set user username
+            firebaseDatabase.reference
+                .child("users").child(uid).child("username")
+                .setValue(displayName)
+
             // set default user bio
             firebaseDatabase.reference
                 .child("users").child(uid).child("bio")

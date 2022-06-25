@@ -21,9 +21,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import com.learn.firebasechatapp.R
-import com.learn.firebasechatapp.getstarted.userinfo.*
 import com.learn.firebasechatapp.helper.FirebaseUtil
-import com.learn.firebasechatapp.signinup.SignUp
 import com.learn.firebasechatapp.userinfo.*
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
@@ -57,7 +55,7 @@ class OwnProfile : Fragment() {
         // get user profile's info from firebase and set it to view
         initUserInfoFirebase(view)
 
-        // refresh fragment every 5 seconds
+        // refresh fragment every 1 seconds
         val refreshHandler = Handler()
         val runnable: Runnable = object : Runnable {
             override fun run() {
@@ -100,6 +98,7 @@ class OwnProfile : Fragment() {
             username.text = user.displayName
             email.text = user.email
 
+            // get user profile picture
             firebaseDatabase.reference
                 .child("users").child(user.uid).child("profile_picture")
                 .get()
@@ -165,19 +164,6 @@ class OwnProfile : Fragment() {
                                     .show()
                             }
                         }
-                }
-                R.id.action_signout -> {
-                    firebaseAuth.signOut()
-                    Toast.makeText(context, "Signed out", Toast.LENGTH_SHORT)
-                        .show()
-
-                    // go to SignUp activity
-                    activity!!.startActivity(Intent(activity, SignUp::class.java))
-                    activity!!.finish()
-                }
-                R.id.action_delete_account -> {
-                    // go to DeleteUserAccount activity
-                    activity!!.startActivity(Intent(activity, DeleteUserAccount::class.java))
                 }
             }
             true
