@@ -4,4 +4,8 @@
         android:id="@+id/action_friend_list"
         android:title="Friends"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_clear_chat"
+        android:title="Clear All Chat"
+        app:showAsAction="never"/>
 </menu>
