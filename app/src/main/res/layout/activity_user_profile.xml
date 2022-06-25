@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/main_menu_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserProfile">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/top_toolbar"
+            app:title="User's Profile"
+            app:titleTextAppearance="@style/ToolbarFont"
+            app:titleTextColor="#FBFBFB"
+
+            android:background="@drawable/top_toolbar_background"
+            android:theme="@style/ToolbarPopupMenu"
+            app:popupTheme="@style/ToolbarPopupMenuBackground"
+
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+        />
+
+        <ScrollView
+            android:translationZ="0dp"
+            android:id="@+id/page_scroller"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="75dp"
+                android:layout_marginBottom="75dp"
+                android:background="@drawable/user_profile_background"
+                android:layout_gravity="center">
+
+                <View
+                    android:id="@+id/top_view"
+                    android:background="@drawable/top_user_profile_background"
+                    android:translationZ="0dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                />
+
+                <RelativeLayout
+                    android:id="@+id/top_user_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:paddingTop="90dp"
+                    android:paddingBottom="30dp"
+                    android:translationZ="1dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/user_profile_picture"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:contentDescription="user_profile_picture"
+                        android:src="@drawable/ic_launcher_background"
+                        app:civ_border_color="#7391E4"
+                        app:civ_border_width="2dp"/>
+
+                    <TextView
+                        android:id="@+id/user_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@id/user_profile_picture"
+                        android:layout_marginTop="106dp"
+                        android:fontFamily="@font/almarai_bold"
+                        android:text="@string/user_name"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/main_user_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/top_user_profile"
+                    android:layout_marginTop="250dp">
+
+                    <RelativeLayout
+                        android:id="@+id/user_account_bio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:background="@drawable/user_profile_item_background"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="8dp">
+
+                        <TextView
+                            android:id="@+id/user_info_title_bio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:fontFamily="@font/almarai_regular"
+                            android:text="@string/bio_title"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:id="@+id/user_info_detail_bio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@id/user_info_title_bio"
+                            android:layout_marginTop="20dp"
+                            android:fontFamily="@font/ud_digikyokasho_n_r"
+                            android:text=""
+                            android:textColor="#AABBC6"
+                            android:textSize="12sp"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/user_account_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@id/user_account_bio"
+                        android:layout_marginTop="59dp"
+                        android:background="@drawable/user_profile_item_background"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="8dp">
+
+                        <TextView
+                            android:id="@+id/user_info_title_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:fontFamily="@font/almarai_regular"
+                            android:text="@string/phone_number_title"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:id="@+id/user_info_detail_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@id/user_info_title_phone"
+                            android:layout_marginTop="20dp"
+                            android:fontFamily="@font/ud_digikyokasho_n_r"
+                            android:text=""
+                            android:textColor="#AABBC6"
+                            android:textSize="12sp"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/user_account_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@id/user_account_phone"
+                        android:layout_marginTop="59dp"
+                        android:background="@drawable/user_profile_item_background"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="8dp">
+
+                        <TextView
+                            android:id="@+id/user_info_title_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:fontFamily="@font/almarai_regular"
+                            android:text="@string/email_title"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:id="@+id/user_info_detail_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@id/user_info_title_email"
+                            android:layout_marginTop="20dp"
+                            android:fontFamily="@font/ud_digikyokasho_n_r"
+                            android:text=""
+                            android:textColor="#AABBC6"
+                            android:textSize="12sp"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/user_account_gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@id/user_account_email"
+                        android:layout_marginTop="59dp"
+                        android:background="@drawable/user_profile_item_background"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="8dp">
+
+                        <TextView
+                            android:id="@+id/user_info_title_gender"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:fontFamily="@font/almarai_regular"
+                            android:text="@string/gender_title"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:id="@+id/user_info_detail_gender"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@id/user_info_title_gender"
+                            android:layout_marginTop="20dp"
+                            android:fontFamily="@font/ud_digikyokasho_n_r"
+                            android:text=""
+                            android:textColor="#AABBC6"
+                            android:textSize="12sp"/>
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/empty_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/user_account_gender"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/almarai_regular"
+                        android:paddingBottom="178dp"
+                        android:textColor="#AABBC6"
+                        android:textSize="14sp"
+                        android:visibility="invisible"/>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
