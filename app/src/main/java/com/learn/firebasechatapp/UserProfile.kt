@@ -67,9 +67,9 @@ class UserProfile : AppCompatActivity() {
             .get()
             .addOnSuccessListener {
                 username.text = it.value.toString()
-            }
-            .addOnFailureListener {
-                username.text = "[account deleted]"
+                if (it.value.toString() == "null") {
+                    username.text = "[deleted account]"
+                }
             }
 
         // get user email from firebase database
@@ -80,30 +80,32 @@ class UserProfile : AppCompatActivity() {
             .get()
             .addOnSuccessListener {
                 email.text = it.value.toString()
-            }
-            .addOnFailureListener {
-                email.text = "[account deleted]"
+                if (it.value.toString() == "null") {
+                    email.text = "[deleted account]"
+                }
             }
 
         // get user profile picture from database
         firebaseDatabase.reference
             .child("users").child(uid).child("profile_picture")
             .get()
-            .addOnSuccessListener {
-                Picasso.get()
-                    .load(it.value.toString())
-                    .into(profilePicture)
-            }
-            .addOnFailureListener {
-                firebaseStorage.reference
-                    .child("default_assets/profile_picture/user_icon.png")
-                    .downloadUrl
-                    .addOnSuccessListener {
-                        // load user profile picture with default image
-                        Picasso.get()
-                            .load(it.toString())
-                            .into(profilePicture)
-                    }
+            .addOnSuccessListener { database ->
+                if (database.value == null) {
+                    firebaseStorage.reference
+                        .child("default_assets/profile_picture/user_icon.png")
+                        .downloadUrl
+                        .addOnSuccessListener {
+                            // load user profile picture with default image
+                            Picasso.get()
+                                .load(it.toString())
+                                .into(profilePicture)
+                        }
+                }
+                else {
+                    Picasso.get()
+                        .load(database.value.toString())
+                        .into(profilePicture)
+                }
             }
 
         // get user bio from firebase database
@@ -114,9 +116,9 @@ class UserProfile : AppCompatActivity() {
             .get()
             .addOnSuccessListener {
                 bio.text = it.value.toString()
-            }
-            .addOnFailureListener {
-                bio.text = "[account deleted]"
+                if (it.value.toString() == "null") {
+                    bio.text = "[deleted account]"
+                }
             }
 
         // get user phone number from firebase database
@@ -127,9 +129,9 @@ class UserProfile : AppCompatActivity() {
             .get()
             .addOnSuccessListener {
                 phoneNumber.text = it.value.toString()
-            }
-            .addOnFailureListener {
-                phoneNumber.text = "[account deleted]"
+                if (it.value.toString() == "null") {
+                    phoneNumber.text = "[deleted account]"
+                }
             }
 
         // get user gender from firebase database
@@ -140,9 +142,9 @@ class UserProfile : AppCompatActivity() {
             .get()
             .addOnSuccessListener {
                 gender.text = it.value.toString()
-            }
-            .addOnFailureListener {
-                gender.text = "[account deleted]"
+                if (it.value.toString() == "null") {
+                    gender.text = "[deleted account]"
+                }
             }
 
         }
