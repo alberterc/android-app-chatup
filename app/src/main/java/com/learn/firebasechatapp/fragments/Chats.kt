@@ -26,6 +26,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
 import com.learn.firebasechatapp.R
 import com.learn.firebasechatapp.UserProfile
 import com.learn.firebasechatapp.helper.FirebaseUtil
@@ -37,6 +39,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 class Chats : Fragment() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firebaseDatabase: FirebaseDatabase
+    private lateinit var firebaseStorage: FirebaseStorage
     private lateinit var adapter: FirebaseListAdapter<ChatMessage>
     private lateinit var messageList: ListView
     private var itemChatCount = 0
@@ -53,6 +56,8 @@ class Chats : Fragment() {
         firebaseAuth = Firebase.auth
         // initialize Firebase Database
         firebaseDatabase = Firebase.database(FirebaseUtil.firebaseDatabaseURL)
+        // initialize Firebase Storage
+        firebaseStorage = Firebase.storage
 
         // create top toolbar
         initTopToolbar(view)
@@ -64,12 +69,15 @@ class Chats : Fragment() {
             val messageInput: EditText = view.findViewById(R.id.chat_input)
 
             // send user chat info to database
-            firebaseDatabase.reference
-                .child("chats")
-                .push()
-                .setValue(
-                    ChatMessage(user!!.uid, user.displayName, messageInput.text.toString())
-                )
+            if (messageInput.text.toString().trim().isNotEmpty()) {
+                firebaseDatabase.reference
+                    .child("chats")
+                    .push()
+                    .setValue(ChatMessage(user!!.uid, user.displayName, messageInput.text.toString()))
+            }
+            else {
+                messageInput.setText("")
+            }
 
             // clear edit text for message input
             messageInput.setText("")
@@ -95,14 +103,39 @@ class Chats : Fragment() {
 
                 // Set their text
                 messageText.text = model.messageText
-                messageUsername.text = model.messageUsername
+
+                // get user username
+                firebaseDatabase.reference
+                    .child("users").child(model.messageUserId!!).child("username")
+                    .get()
+                    .addOnSuccessListener {
+                        messageUsername.text = it.value.toString()
+                        if (it.value.toString() == "null") {
+                            messageUsername.text = "[deleted account]"
+                        }
+                    }
+
+                // get user profile picture
                 firebaseDatabase.reference
                     .child("users").child(model.messageUserId!!).child("profile_picture")
                     .get()
-                    .addOnSuccessListener {
-                        Picasso.get()
-                            .load(it.value.toString())
-                            .into(messageProfilePicture)
+                    .addOnSuccessListener { database ->
+                        if (database.value == null) {
+                            firebaseStorage.reference
+                                .child("default_assets/profile_picture/user_icon.png")
+                                .downloadUrl
+                                .addOnSuccessListener {
+                                    // load user profile picture with default image
+                                    Picasso.get()
+                                        .load(it.toString())
+                                        .into(messageProfilePicture)
+                                }
+                        }
+                        else {
+                            Picasso.get()
+                                .load(database.value.toString())
+                                .into(messageProfilePicture)
+                        }
                     }
 
                 // Format the date before showing it
@@ -155,10 +188,6 @@ class Chats : Fragment() {
         topToolbar.inflateMenu(R.menu.chat_list_menu)
         topToolbar.setOnMenuItemClickListener{
             when (it.itemId) {
-                R.id.action_friend_list -> {
-                    friendListFragment()
-                }
-
                 R.id.action_clear_chat -> {
                     firebaseDatabase.reference
                         .child("chats")
@@ -167,13 +196,6 @@ class Chats : Fragment() {
             }
             true
         }
-    }
-
-    private fun friendListFragment() {
-        val fragmentManager: FragmentManager = activity!!.supportFragmentManager
-        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.chats_fragment, Friends())
-            .commit()
     }
 
 }
