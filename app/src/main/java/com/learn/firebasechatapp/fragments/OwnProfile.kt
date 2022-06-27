@@ -8,7 +8,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
@@ -204,7 +203,7 @@ class OwnProfile : Fragment() {
                     // set default user profile picture
                     // get default picture from Firebase cloud storage
                     firebaseStorage.reference
-                        .child("users/${user.uid}/profile_picture")
+                        .child("users").child(user.uid).child("profile_picture")
                         .downloadUrl
                         .addOnSuccessListener {
                             // set user profile picture in Firebase realtime database

@@ -16,7 +16,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
-import com.learn.firebasechatapp.MainActivity
+import com.learn.firebasechatapp.MainMenu
 import com.learn.firebasechatapp.R
 import com.learn.firebasechatapp.helper.FirebaseUtil
 
@@ -38,7 +38,7 @@ class SignUp : AppCompatActivity() {
         // if yes, go to MainActivity activity
         // if no, stay here at SignUp activity
         if (firebaseAuth.currentUser != null) {
-            startActivity(Intent(applicationContext, MainActivity::class.java))
+            startActivity(Intent(applicationContext, MainMenu::class.java))
             finish()
         }
 
@@ -184,7 +184,7 @@ class SignUp : AppCompatActivity() {
             // set default user profile picture
             // get default picture from Firebase cloud storage
             firebaseStorage.reference
-                .child("default_assets/profile_picture/user_icon.png")
+                .child("default_assets").child("profile_picture").child("user_icon.png")
                 .downloadUrl
                 .addOnSuccessListener {
                     // set user profile picture in Firebase realtime database

@@ -2,6 +2,7 @@ package com.learn.firebasechatapp.userinfo
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -15,7 +16,6 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
-import com.learn.firebasechatapp.MainActivity
 import com.learn.firebasechatapp.R
 import com.learn.firebasechatapp.helper.FirebaseUtil
 import com.learn.firebasechatapp.signinup.SignUp
@@ -61,7 +61,10 @@ class DeleteUserAccount : AppCompatActivity() {
                         firebaseStorage.reference
                             .child("users")
                             .child(user.uid)
+                            .child("profile_picture")
                             .delete()
+
+                        // sign out account
                         // remove account from firebase auth
                         user.delete()
                         firebaseAuth.signOut()

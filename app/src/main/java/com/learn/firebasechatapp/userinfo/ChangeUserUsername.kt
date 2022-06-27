@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
@@ -40,14 +41,22 @@ class ChangeUserUsername : AppCompatActivity() {
         saveButton.setOnClickListener {
             // set user account display name
             val profileUpdate = userProfileChangeRequest {
-                displayName = usernameInput.text.toString()
+                if (usernameInput.text.toString().trim().isNotEmpty()) {
+                    displayName = usernameInput.text.toString()
+                }
             }
             user!!.updateProfile(profileUpdate)
 
             // set username in Firebase realtime database
             firebaseDatabase.reference
                 .child("users").child(user.uid).child("username")
-                .setValue(usernameInput.text.toString())
+                .setValue(
+                    usernameInput.text.toString().trim().ifEmpty {
+                        Toast.makeText(applicationContext, "Invalid input", Toast.LENGTH_SHORT)
+                            .show()
+                        user.displayName
+                    }
+                )
 
             // go back to OwnProfile fragment
             onBackPressed()

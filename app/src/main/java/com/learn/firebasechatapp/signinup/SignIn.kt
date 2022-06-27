@@ -2,7 +2,6 @@ package com.learn.firebasechatapp.signinup
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -10,12 +9,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
-import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.learn.firebasechatapp.MainActivity
+import com.learn.firebasechatapp.MainMenu
 import com.learn.firebasechatapp.R
 import com.learn.firebasechatapp.helper.FirebaseUtil
 
@@ -130,7 +128,7 @@ class SignIn : AppCompatActivity() {
         val user = firebaseAuth.currentUser
         // email is verified, go to MainActivity activity
         if (user!!.isEmailVerified) {
-            startActivity(Intent(applicationContext, MainActivity::class.java))
+            startActivity(Intent(applicationContext, MainMenu::class.java))
             finish()
         }
         // email is not verified, go to VerifyEmail activity

@@ -52,7 +52,7 @@ class ChangeUserBio : AppCompatActivity() {
                 .child("users")
                 .child(user.uid)
                 .child("bio")
-                .setValue(inputBio.text.toString())
+                .setValue(inputBio.text.toString().trim())
 
             // go back to Own Profile fragment
             onBackPressed()

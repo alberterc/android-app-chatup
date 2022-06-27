@@ -41,7 +41,12 @@ class ChangeUserPhoneNumber : AppCompatActivity() {
             .child("phone_number")
             .get()
             .addOnSuccessListener {
-                inputPhoneNumber.setText(it.value.toString())
+                if (it.value.toString() == "Unknown") {
+                    inputPhoneNumber.hint = "Unknown"
+                }
+                else {
+                    inputPhoneNumber.setText(it.value.toString())
+                }
             }
 
         // save phone number button onclick function
@@ -53,7 +58,14 @@ class ChangeUserPhoneNumber : AppCompatActivity() {
                 .child("users")
                 .child(user.uid)
                 .child("phone_number")
-                .setValue(inputPhoneNumber.text.toString())
+                .setValue(
+                    if (inputPhoneNumber.text.toString().trim().isEmpty()) {
+                        "Unknown" // set Unknown to database
+                    }
+                    else {
+                        inputPhoneNumber.text.toString() // set this text to database
+                    }
+                )
 
             // go back to Own Profile fragment
             onBackPressed()
