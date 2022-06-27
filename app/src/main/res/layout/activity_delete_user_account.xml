@@ -69,6 +69,7 @@
             android:layout_alignTop="@id/password_input"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="60dp"
+            android:foreground="?android:attr/selectableItemBackground"
             android:background="@drawable/button_background"
             android:text="@string/continue_text_button"
             android:textAllCaps="false"

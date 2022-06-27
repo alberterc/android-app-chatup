@@ -94,6 +94,7 @@
             android:layout_alignTop="@id/change_gender_container"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="200dp"
+            android:foreground="?android:attr/selectableItemBackground"
             android:background="@drawable/button_background"
             android:text="@string/save_button"
             android:textAllCaps="false"

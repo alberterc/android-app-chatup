@@ -70,6 +70,7 @@
             android:layout_alignTop="@id/change_phone_input"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="60dp"
+            android:foreground="?android:attr/selectableItemBackground"
             android:background="@drawable/button_background"
             android:text="@string/save_button"
             android:textAllCaps="false"

@@ -62,6 +62,7 @@
             android:layout_height="48dp"
             android:layout_alignTop="@+id/initial_sign_up_info"
             android:layout_marginTop="186dp"
+            android:foreground="?android:attr/selectableItemBackground"
             android:background="@drawable/button_background"
             android:fontFamily="@font/ud_digikyokasho_n_r"
             android:text="@string/create_account_button"

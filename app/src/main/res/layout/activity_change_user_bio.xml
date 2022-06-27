@@ -65,12 +65,13 @@
 
         <android.widget.Button
             android:id="@+id/change_bio_button"
-            android:background="@drawable/button_background"
-            android:layout_alignTop="@id/change_bio_input"
-            android:layout_marginTop="130dp"
-            android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@id/change_bio_input"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="130dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:background="@drawable/button_background"
             android:text="@string/save_button"
             android:textAllCaps="false"
             android:textColor="#FBFBFB"
