@@ -42,9 +42,6 @@
             android:exported="true"/>
         <activity
             android:name=".getstarted.GetStarted"
-            android:exported="true"/>
-        <activity
-            android:name=".signinup.SignUp"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -53,10 +50,13 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".signinup.SignUp"
+            android:exported="true"/>
+        <activity
             android:name=".signinup.SignIn"
             android:exported="true"/>
         <activity
-            android:name=".MainActivity"
+            android:name=".MainMenu"
             android:exported="true"/>
     </application>
 
