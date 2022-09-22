@@ -15,3 +15,5 @@ Some changes were applied to the final result.
 
 ## Developer
 Albert E (vradnisntlong@gmail.com)
+
+All rights reserved.
