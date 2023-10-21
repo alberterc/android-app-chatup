@@ -14,6 +14,6 @@ Some changes were applied to the final result.
 ![image](https://user-images.githubusercontent.com/85069947/176123975-0d027d05-82f8-40e9-9027-c13ea7236595.png)
 
 ## Developer
-Albert E (vradnisntlong@gmail.com)
+Albert E (albertenrico.5@gmail.com)
 
 All rights reserved.
