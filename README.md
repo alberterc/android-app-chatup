@@ -13,7 +13,4 @@ Some changes were applied to the final result.
 ![image](https://user-images.githubusercontent.com/85069947/176123950-ef726c79-3c9d-434c-845d-986cdfaf285c.png)
 ![image](https://user-images.githubusercontent.com/85069947/176123975-0d027d05-82f8-40e9-9027-c13ea7236595.png)
 
-## Developer
-Albert E (albertenrico.5@gmail.com)
-
 All rights reserved.
